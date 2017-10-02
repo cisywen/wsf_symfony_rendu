@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="lien">
+        <p>
+            <a href="{{ path('add') }}">
+                Ajouter un nouveau produit
+            </a>
+        </p>
+        <p>
+            <a href="{{ path('products') }}">
+                Liste de tous les produits
+            </a>
+        </p>
+
+    </div>
+
+<div class="show_cat">
+    <h1>Liste des categories</h1>
+    <p>{% for category in categories %}
+    <p>
+        <a href="{{ path('categoryinfo',{id:category.id}) }}">
+            {{ category.name }}
+        </a>
+    </p>
+</div>
+
+{% endfor %}
+<div class="last_products">
+    <h1>Liste des 5 derniers produits</h1>
+
+    {% for product in products %}
+        <p><img src="/uploads/{{product.image}}" width="200px"/> </p>
+            <a href="{{ path('productsinfo',{id:product.id}) }}">
+                {{ product.name }}
+            </a>
+
+
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}

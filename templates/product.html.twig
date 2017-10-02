@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="lien">
+    <p>
+        <a href="{{ path('homepage') }}">
+            Accueil
+        </a>
+    </p>
+    <p>
+        <a href="{{ path('products') }}">
+            Liste de tous les produits
+        </a>
+    </p>
+</div>
+
+<div class="show_product">
+
+    <h1>{{ product.name }} </h1>
+    <img src="/uploads/{{product.image}}" width="200px"/>
+    <p>Description:{{ product.content }} </p>
+    <p>Prix: {{ product.price }} euros</p>
+    <p>Categorie:{{ product.category }} </p>
+
+</div>
+    <div class="show_comment">
+    <h2>Les commentaires sur {{ product.name }}</h2>
+    {% for comment in product.comments %}
+       <ul>
+           <li>
+               <p>{{ comment.author }}:</p>
+               <p>{{ comment.comment }}</p>
+           </li>
+       </ul>
+
+    {% endfor %}
+    </div>
+
+
+    <div class="add_comment">
+        <h3>Poster un commentaire:</h3>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
